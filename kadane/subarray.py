@@ -107,3 +107,37 @@ def compute_palindromes(words):
             else:
                 results.append(''.join(pal))
     return results
+
+
+def biggest_k_from_array(arr, k):
+    """
+    Gets the biggest 'k' elements from an array
+    :param arr: the search array
+    :param k: number of the biggest elements to seach
+    :return: an array with the 'k' biggest elements
+    """
+    if k >= len(arr):
+        return arr
+    result = []
+    for n in arr:
+        if len(result) < k:
+            result.append(n)
+        else:
+            index_of_smallest_in_result = smallest_in_arr(result)
+            result[index_of_smallest_in_result] = n
+    return result
+
+
+def smallest_in_arr(arr):
+    """
+    Returns the index of the smallest element of an array
+    :param arr: the array to search
+    :return: the index of the smallest element
+    """
+    smallest_val = None
+    index = None
+    for i, a in enumerate(arr):
+        if not smallest_val or smallest_val > a:
+            smallest_val = a
+            index = i
+    return index
