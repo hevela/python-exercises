@@ -123,15 +123,18 @@ def biggest_k_from_array(arr, k):
         if len(result) < k:
             result.append(n)
         else:
-            index_of_smallest_in_result = smallest_in_arr(result)
-            result[index_of_smallest_in_result] = n
+            index_of_smallest_in_result = smallest_in_arr(result, n)
+            if index_of_smallest_in_result is not None:
+                result[index_of_smallest_in_result] = n
     return result
 
 
-def smallest_in_arr(arr):
+def smallest_in_arr(arr, current):
     """
     Returns the index of the smallest element of an array
     :param arr: the array to search
+    :param current: a control variable, will check if the smallest val in arr
+    is lesser than current val
     :return: the index of the smallest element
     """
     smallest_val = None
@@ -140,4 +143,4 @@ def smallest_in_arr(arr):
         if not smallest_val or smallest_val > a:
             smallest_val = a
             index = i
-    return index
+    return index if smallest_val < current else None
